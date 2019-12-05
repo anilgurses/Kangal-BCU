@@ -2,7 +2,6 @@ import QtQuick 2.11
 import QtQuick.Window 2.12
 import QtQuick.Templates 2.13
 import QtQuick.Controls 2.13
-import kadran
 
 
 

@@ -4,5 +4,6 @@
         <file>images/bicycle.png</file>
         <file>images/background1.png</file>
         <file>images/background2.png</file>
+        <file>images/settings icon.png</file>
     </qresource>
 </RCC>
