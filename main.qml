@@ -46,8 +46,10 @@ Window {
                 y: 1
                 width: 74
                 height: 70
-                color: "#a0d05555"
+                color: "#a70104e4"
                 radius: 15
+                border.color: "#0d1498"
+                border.width: 5
 
                 ProgressBar {
                     id: progressBar
@@ -62,34 +64,16 @@ Window {
                     value: 0.5
                 }
 
-                Text {
-                    id: element
-                    text: qsTr("Batarya")
-                    anchors.right: parent.right
-                    anchors.rightMargin: 22
-                    anchors.bottom: parent.bottom
-                    anchors.bottomMargin: 8
-                    anchors.left: parent.left
-                    anchors.leftMargin: 20
-                    anchors.top: parent.top
-                    anchors.topMargin: 37
-                    font.pixelSize: 12
-                }
-
-                Text {
-                    id: element10
-                    x: 2
-                    y: 7
-                    text: qsTr("Seviyesi")
-                    anchors.bottom: parent.bottom
-                    anchors.leftMargin: 20
-                    anchors.bottomMargin: -7
-                    anchors.right: parent.right
-                    font.pixelSize: 12
-                    anchors.left: parent.left
-                    anchors.rightMargin: 22
-                    anchors.topMargin: 52
-                    anchors.top: parent.top
+                Image {
+                    id: image3
+                    anchors.rightMargin: -2
+                    anchors.leftMargin: -4
+                    anchors.bottomMargin: -6
+                    anchors.topMargin: 26
+                    anchors.fill: parent
+                    clip: true
+                    fillMode: Image.PreserveAspectFit
+                    source: "hiclipart.com.png"
                 }
             }
 
@@ -99,45 +83,32 @@ Window {
                 y: 1
                 width: 75
                 height: 71
-                color: "#a0d05555"
+                color: "#a0120f0f"
                 radius: 15
-                Text {
-                    id: element11
-                    text: qsTr("Toplam Km.")
-                    anchors.bottom: parent.bottom
-                    anchors.leftMargin: 0
-                    anchors.bottomMargin: 0
-                    anchors.right: parent.right
-                    font.pixelSize: 12
-                    anchors.left: parent.left
-                    verticalAlignment: Text.AlignVCenter
-                    anchors.rightMargin: 0
-                    anchors.topMargin: 45
-                    anchors.top: parent.top
-                    horizontalAlignment: Text.AlignHCenter
-                }
+                border.color: "#191515"
+                border.width: 5
 
                 Text {
                     id: tdistance1
-                    x: 0
-                    y: 8
-                    width: 127
-                    height: 19
+                    x: 6
+                    y: 4
+                    width: 53
+                    height: 27
                     text: qsTr("100 ")
-                    font.pixelSize: 30
+                    font.pixelSize: 28
                     verticalAlignment: Text.AlignVCenter
                     horizontalAlignment: Text.AlignLeft
                 }
 
-                Text {
-                    id: element20
-                    x: 45
-                    y: 33
-                    width: 30
-                    height: 21
-                    text: qsTr("Km")
-                    font.pixelSize: 12
-                    horizontalAlignment: Text.AlignHCenter
+                Image {
+                    id: image8
+                    anchors.rightMargin: 2
+                    anchors.bottomMargin: 2
+                    anchors.leftMargin: 22
+                    anchors.topMargin: 30
+                    anchors.fill: parent
+                    fillMode: Image.PreserveAspectFit
+                    source: "mission.png"
                 }
             }
 
@@ -147,22 +118,32 @@ Window {
                 y: 1
                 width: 75
                 height: 71
-                color: "#a0d05555"
+                color: "#a053f9f9"
                 radius: 15
+                border.color: "#057676"
+                border.width: 5
+
+
+
+                Image {
+                    id: image5
+                    x: -6
+                    y: 13
+                    width: 97
+                    height: 50
+                    clip: true
+                    fillMode: Image.PreserveAspectFit
+                    source: "pngtube.com-roadmap-png-4341369.png"
+                }
                 Text {
-                    id: element12
-                    text: qsTr("Trip Km.")
-                    anchors.bottom: parent.bottom
-                    anchors.leftMargin: 0
-                    anchors.bottomMargin: 0
-                    anchors.right: parent.right
-                    font.pixelSize: 12
-                    anchors.left: parent.left
-                    anchors.rightMargin: 0
-                    verticalAlignment: Text.AlignVCenter
-                    anchors.topMargin: 45
-                    anchors.top: parent.top
+                    id: element19
+                    x: 29
+                    y: 8
+                    width: 30
+                    height: 21
+                    text: qsTr("Km")
                     horizontalAlignment: Text.AlignHCenter
+                    font.pixelSize: 12
                 }
 
                 Text {
@@ -178,9 +159,9 @@ Window {
                 }
 
                 Text {
-                    id: element19
-                    x: 45
-                    y: 33
+                    id: element20
+                    x: -34
+                    y: 10
                     width: 30
                     height: 21
                     text: qsTr("Km")
@@ -197,21 +178,8 @@ Window {
                 height: 71
                 color: "#a0d05555"
                 radius: 15
-                Text {
-                    id: element13
-                    text: qsTr("HIZ")
-                    anchors.bottom: parent.bottom
-                    anchors.leftMargin: 0
-                    anchors.bottomMargin: 0
-                    anchors.right: parent.right
-                    font.pixelSize: 12
-                    anchors.left: parent.left
-                    verticalAlignment: Text.AlignVCenter
-                    anchors.rightMargin: 0
-                    anchors.topMargin: 45
-                    anchors.top: parent.top
-                    horizontalAlignment: Text.AlignHCenter
-                }
+                border.color: "#592626"
+                border.width: 5
 
                 Text {
                     id: tdistance3
@@ -228,11 +196,25 @@ Window {
                 Text {
                     id: element16
                     x: 45
-                    y: 33
+                    y: 7
                     width: 30
-                    height: 21
+                    height: 20
                     text: qsTr("Km/s")
                     font.pixelSize: 12
+                }
+
+                Image {
+                    id: image4
+                    width: 30
+                    height: 30
+                    clip: true
+                    anchors.rightMargin: 10
+                    anchors.leftMargin: 16
+                    anchors.bottomMargin: 0
+                    anchors.topMargin: 33
+                    anchors.fill: parent
+                    fillMode: Image.PreserveAspectFit
+                    source: "dashboard.png"
                 }
             }
 
@@ -242,24 +224,10 @@ Window {
                 y: 0
                 width: 75
                 height: 71
-                color: "#a0d05555"
+                color: "#a0f0f62f"
                 radius: 15
-                Text {
-                    id: element14
-                    y: 45
-                    text: qsTr("Ortalama Hız")
-                    anchors.bottom: parent.bottom
-                    anchors.leftMargin: 0
-                    anchors.bottomMargin: 0
-                    anchors.right: parent.right
-                    font.pixelSize: 12
-                    anchors.left: parent.left
-                    anchors.rightMargin: 0
-                    verticalAlignment: Text.AlignVCenter
-                    anchors.topMargin: 45
-                    anchors.top: parent.top
-                    horizontalAlignment: Text.AlignHCenter
-                }
+                border.color: "#69690d"
+                border.width: 5
 
                 Text {
                     id: tdistance4
@@ -275,12 +243,22 @@ Window {
 
                 Text {
                     id: element17
-                    x: 45
-                    y: 33
+                    x: 28
+                    y: 8
                     width: 30
                     height: 21
                     text: qsTr("Km/s")
                     font.pixelSize: 12
+                }
+
+                Image {
+                    id: image6
+                    anchors.leftMargin: 28
+                    anchors.topMargin: 27
+                    anchors.fill: parent
+                    clip: true
+                    fillMode: Image.PreserveAspectFit
+                    source: "trzcacak.rs-statistics-icon-png-2224826.png"
                 }
             }
 
@@ -290,24 +268,10 @@ Window {
                 y: 1
                 width: 75
                 height: 71
-                color: "#a0d05555"
+                color: "#a0c80112"
                 radius: 15
-                Text {
-                    id: element15
-                    y: 45
-                    text: qsTr("Kalori")
-                    anchors.bottom: parent.bottom
-                    anchors.leftMargin: 0
-                    anchors.bottomMargin: 0
-                    anchors.right: parent.right
-                    font.pixelSize: 12
-                    anchors.left: parent.left
-                    verticalAlignment: Text.AlignVCenter
-                    anchors.rightMargin: 0
-                    anchors.topMargin: 45
-                    anchors.top: parent.top
-                    horizontalAlignment: Text.AlignHCenter
-                }
+                border.width: 5
+                border.color: "#790a13"
 
                 Text {
                     id: tdistance5
@@ -323,12 +287,21 @@ Window {
 
                 Text {
                     id: element18
-                    x: 51
-                    y: 34
+                    x: 48
+                    y: 8
                     text: qsTr("KCal")
                     font.pixelSize: 12
                 }
+
+                Image {
+                    id: image7
+                    anchors.topMargin: 27
+                    anchors.fill: parent
+                    fillMode: Image.PreserveAspectFit
+                    source: "calorie.png"
+                }
             }
+
 
             Rectangle {//mapin karesi
                 id: rectangle8
@@ -356,200 +329,83 @@ Window {
                     zoomLevel: 14
                 }
             }
+
+
+            Button {
+                id: button3
+                x: 394
+                y: 215
+                width: 85
+                height: 51
+                text: qsTr("[   ]")
+                font.pointSize: 23
+                font.wordSpacing: 0
+                onClicked:{
+                    swipeView.currentIndex=2;
+                }
+
+                Image {
+                    id: image2
+                    x: -2
+                    y: 0
+                    width: 87
+                    height: 43
+                    fillMode: Image.PreserveAspectFit
+                    source: "images/konum-icon-png.png"
+                }
+            }
+
         }
+
 
         Page {
             id: page2
             enabled: false
             hoverEnabled: false
-            Rectangle {
-                id: rectangle1
-                x: 168
-                y: 84
-                width: 145
-                height: 106
-                color: "#a0d05555"
-                radius: 53
-
-                Text {
-                    id: element1
-                    text: qsTr("AnlıkHız")
-                    verticalAlignment: Text.AlignVCenter
-                    horizontalAlignment: Text.AlignHCenter
-                    anchors.topMargin: 31
-                    anchors.left: parent.left
-                    anchors.bottom: parent.bottom
-                    anchors.top: parent.top
-                    anchors.right: parent.right
-                    font.pixelSize: 12
-                    anchors.leftMargin: 0
-                    anchors.rightMargin: 0
-                    anchors.bottomMargin: 14
-                }
-
-                Text {
-                    id: speed
-                    x: 8
-                    y: 29
-                    width: 129
-                    height: 19
-                    text: qsTr("10 Km/S")
-                    horizontalAlignment: Text.AlignHCenter
-                    font.pixelSize: 20
-                }
+            Dashboard {
+                anchors.topMargin: 50
+                anchors.bottom: parent.bottom
+                anchors.bottomMargin: 0
+                anchors.right: parent.right
+                anchors.left: parent.left
+                anchors.top: parent.top
             }
 
-            Rectangle {
-                id: rectangle3
-                x: 319
-                y: 21
-                width: 127
-                height: 71
-                color: "#a0d05555"
-                radius: 15
-                Text {
-                    id: element5
-                    text: qsTr("Katedilen Mesafe")
-                    verticalAlignment: Text.AlignVCenter
-                    horizontalAlignment: Text.AlignHCenter
-                    anchors.rightMargin: 0
-                    anchors.bottom: parent.bottom
-                    font.pixelSize: 12
-                    anchors.top: parent.top
-                    anchors.topMargin: 37
-                    anchors.leftMargin: 0
-                    anchors.left: parent.left
-                    anchors.bottomMargin: 8
-                    anchors.right: parent.right
-                }
-
-                Text {
-                    id: distance
-                    x: 0
-                    y: 11
-                    width: 127
-                    height: 19
-                    text: qsTr("10 Km")
-                    horizontalAlignment: Text.AlignHCenter
-                    font.pixelSize: 20
-                }
-            }
-
-            Rectangle {
-                id: rectangle4
-                x: 37
-                y: 21
-                width: 127
-                height: 71
-                color: "#a0d05555"
-                radius: 15
-                Text {
-                    id: element6
-                    text: qsTr("Toplam Kilometre")
-                    verticalAlignment: Text.AlignVCenter
-                    horizontalAlignment: Text.AlignHCenter
-                    anchors.rightMargin: 0
-                    anchors.bottom: parent.bottom
-                    font.pixelSize: 12
-                    anchors.top: parent.top
-                    anchors.topMargin: 37
-                    anchors.leftMargin: 0
-                    anchors.left: parent.left
-                    anchors.bottomMargin: 8
-                    anchors.right: parent.right
-                }
-
-                Text {
-                    id: tdistance
-                    x: 0
-                    y: 11
-                    width: 127
-                    height: 19
-                    text: qsTr("10 Km")
-                    verticalAlignment: Text.AlignVCenter
-                    horizontalAlignment: Text.AlignHCenter
-                    font.pixelSize: 20
-                }
-            }
-
-            Rectangle {
-                id: rectangle5
-                x: 319
-                y: 166
-                width: 127
-                height: 71
-                color: "#a0d05555"
-                radius: 15
-                Text {
-                    id: element7
-                    text: qsTr("Ortalama Hız")
-                    verticalAlignment: Text.AlignVCenter
-                    horizontalAlignment: Text.AlignHCenter
-                    anchors.rightMargin: 0
-                    anchors.bottom: parent.bottom
-                    font.pixelSize: 12
-                    anchors.top: parent.top
-                    anchors.topMargin: 37
-                    anchors.leftMargin: 0
-                    anchors.left: parent.left
-                    anchors.bottomMargin: 8
-                    anchors.right: parent.right
-                }
-
-                Text {
-                    id: averagespeed
-                    x: 0
-                    y: 11
-                    width: 127
-                    height: 19
-                    text: qsTr("10 Km/S")
-                    horizontalAlignment: Text.AlignHCenter
-                    font.pixelSize: 20
-                }
-            }
-
-            Rectangle {
-                id: rectangle6
-                x: 37
-                y: 166
-                width: 127
-                height: 73
-                color: "#a0d05555"
-                radius: 15
-                Text {
-                    id: element8
-                    text: qsTr("Kalori")
-                    verticalAlignment: Text.AlignVCenter
-                    horizontalAlignment: Text.AlignHCenter
-                    anchors.rightMargin: 0
-                    anchors.bottom: parent.bottom
-                    font.pixelSize: 12
-                    anchors.top: parent.top
-                    anchors.topMargin: 37
-                    anchors.leftMargin: 0
-                    anchors.left: parent.left
-                    anchors.bottomMargin: 8
-                    anchors.right: parent.right
-                }
-
-                Text {
-                    id: calori
-                    x: 0
-                    y: 11
-                    width: 127
-                    height: 19
-                    text: qsTr("1000 calori")
-                    horizontalAlignment: Text.AlignHCenter
-                    font.pixelSize: 20
-                }
+            Text {
+                id: element1
+                x: 154
+                y: 0
+                width: 151
+                height: 20
+                text: qsTr("Göstergeler")
+                visible: true
+                font.bold: true
+                verticalAlignment: Text.AlignVCenter
+                horizontalAlignment: Text.AlignHCenter
+                font.pixelSize: 13
             }
         }
 
         Page {
             id: page3
 
-        }
+            Text {
+                id: element2
+                x: 154
+                y: 0
+                width: 151
+                height: 20
+                text: qsTr("Harita")
+                visible: true
+                horizontalAlignment: Text.AlignHCenter
+                font.pixelSize: 13
+                verticalAlignment: Text.AlignVCenter
+                font.bold: true
+            }
 
+
+
+        }
         Page {
             id: page4
 
@@ -568,11 +424,13 @@ Window {
                 model: ["Mustafa","Ali"]
 
 
+
                 //tiklandigi zaman secilen profilin bilgilerini gereken yerlere koyacak ve duzenle switchini enable yapacak
 
 
                 onCurrentTextChanged:
                 {
+                    element6.text = model[currentIndex]
                     profilDuzenleSwitch.enabled = true
 
 
@@ -1142,6 +1000,8 @@ Window {
 
 
 
+
+
     }
 
 
@@ -1256,7 +1116,44 @@ Window {
         }
     }
 
+    Text {
+        id: element5
+        x: 42
+        y: 10
+        width: 68
+        height: 19
+        text: qsTr("Kullanıcı:")
+        renderType: Text.QtRendering
+        font.family: "Verdana"
+        horizontalAlignment: Text.AlignHCenter
+        font.pixelSize: 13
+        font.bold: false
+        font.underline: false
+        fontSizeMode: Text.FixedSize
+        font.italic: false
+        textFormat: Text.AutoText
+    }
 
+    Text {
+        id: element6
+        x: 50
+        y: 23
+        width: 61
+        height: 20
+        text: model [currentIndex]
+        font.bold: true //qsTr("Mustafa")
+        font.pixelSize: 16
+    }
+
+    Image {
+        id: image9
+        x: 0
+        y: 3
+        width: 54
+        height: 40
+        fillMode: Image.PreserveAspectFit
+        source: "images/bicycle.png"
+    }
 
 
 
@@ -1266,11 +1163,12 @@ Window {
 
 
 
+
+
 /*##^##
 Designer {
-    D{i:85;anchors_height:37;anchors_width:52;anchors_x:365;anchors_y:8}D{i:86;anchors_height:37;anchors_width:52;anchors_x:365;anchors_y:8}
-D{i:87;anchors_height:37;anchors_width:52;anchors_x:365;anchors_y:8}D{i:88;anchors_height:37;anchors_width:52;anchors_x:365;anchors_y:8}
-D{i:90;anchors_height:37;anchors_width:52;anchors_x:365;anchors_y:8}D{i:89;anchors_height:37;anchors_width:52;anchors_x:365;anchors_y:8}
-D{i:91;anchors_height:37;anchors_width:52;anchors_x:365;anchors_y:8}
+    D{i:6;anchors_height:272;anchors_width:265;anchors_x:-172;anchors_y:-30}D{i:9;anchors_height:68;anchors_width:100;anchors_x:5;anchors_y:22}
+D{i:18;anchors_height:321;anchors_width:191;anchors_x:-31;anchors_y:-37}D{i:22;anchors_height:55;anchors_width:74;anchors_x:7;anchors_y:91}
+D{i:26;anchors_height:354;anchors_width:249;anchors_x:-208;anchors_y:-12}
 }
 ##^##*/

@@ -2,5 +2,22 @@
     <qresource prefix="/">
         <file>main.qml</file>
         <file>splashscreen.qml</file>
+        <file>Dashboard.qml</file>
+        <file>Fuel.qml</file>
+        <file>FuelNeedle.qml</file>
+        <file>Gear.qml</file>
+        <file>Info.qml</file>
+        <file>Speed.qml</file>
+        <file>SpeedNeedle.qml</file>
+        <file>Turn.qml</file>
+        <file>hiclipart.com.png</file>
+        <file>speed-icon-png-1(1).jpg</file>
+        <file>performance-icon-png-23.jpg</file>
+        <file>dashboard.png</file>
+        <file>pngtube.com-roadmap-png-4341369.png</file>
+        <file>average-icon-27.jpg</file>
+        <file>trzcacak.rs-statistics-icon-png-2224826.png</file>
+        <file>calorie.png</file>
+        <file>mission.png</file>
     </qresource>
 </RCC>
