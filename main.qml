@@ -2,8 +2,8 @@ import QtQuick 2.11
 import QtQuick.Window 2.12
 import QtQuick.Templates 2.13
 import QtQuick.Controls 2.13
-import QtLocation 5.6
-import QtPositioning 5.6
+import QtLocation 5.12
+import QtPositioning 5.12
 
 
 
@@ -40,6 +40,10 @@ Window {
 
         Page {
             id: page1
+            layer.mipmap: true
+            background: Rectangle{
+                       color:"#81c784"
+            }
             Rectangle {
                 id: rectangleBattery
                 x: 403
@@ -54,11 +58,11 @@ Window {
                 ProgressBar {
                     id: progressBar
                     anchors.right: parent.right
-                    anchors.rightMargin: 0
+                    anchors.rightMargin: 6
                     anchors.left: parent.left
-                    anchors.leftMargin: 0
+                    anchors.leftMargin: 4
                     anchors.bottom: parent.bottom
-                    anchors.bottomMargin: 34
+                    anchors.bottomMargin: 42
                     anchors.top: parent.top
                     anchors.topMargin: 8
                     value: 0.5
@@ -73,7 +77,7 @@ Window {
                     anchors.fill: parent
                     clip: true
                     fillMode: Image.PreserveAspectFit
-                    source: "hiclipart.com.png"
+                    source: "images/hiclipart.com.png"
                 }
             }
 
@@ -90,12 +94,12 @@ Window {
 
                 Text {
                     id: tdistance1
-                    x: 6
-                    y: 4
-                    width: 53
+                    x: 8
+                    y: 8
+                    width: 49
                     height: 27
                     text: qsTr("100 ")
-                    font.pixelSize: 28
+                    font.pixelSize: 26
                     verticalAlignment: Text.AlignVCenter
                     horizontalAlignment: Text.AlignLeft
                 }
@@ -108,7 +112,7 @@ Window {
                     anchors.topMargin: 30
                     anchors.fill: parent
                     fillMode: Image.PreserveAspectFit
-                    source: "mission.png"
+                    source: "images/mission.png"
                 }
             }
 
@@ -127,17 +131,17 @@ Window {
 
                 Image {
                     id: image5
-                    x: -6
-                    y: 13
-                    width: 97
-                    height: 50
+                    x: 12
+                    y: 27
+                    width: 81
+                    height: 36
                     clip: true
                     fillMode: Image.PreserveAspectFit
-                    source: "pngtube.com-roadmap-png-4341369.png"
+                    source: "images/pngtube.com-roadmap-png-4341369.png"
                 }
                 Text {
                     id: element19
-                    x: 29
+                    x: 37
                     y: 8
                     width: 30
                     height: 21
@@ -148,7 +152,7 @@ Window {
 
                 Text {
                     id: tdistance2
-                    x: 0
+                    x: 5
                     y: 8
                     width: 75
                     height: 19
@@ -160,8 +164,8 @@ Window {
 
                 Text {
                     id: element20
-                    x: -34
-                    y: 10
+                    x: -35
+                    y: 17
                     width: 30
                     height: 21
                     text: qsTr("Km")
@@ -183,20 +187,20 @@ Window {
 
                 Text {
                     id: tdistance3
-                    x: 0
+                    x: 8
                     y: 8
                     width: 75
                     height: 19
                     text: qsTr("12")
-                    font.pixelSize: 40
+                    font.pixelSize: 30
                     verticalAlignment: Text.AlignVCenter
                     horizontalAlignment: Text.AlignLeft
                 }
 
                 Text {
                     id: element16
-                    x: 45
-                    y: 7
+                    x: 37
+                    y: 16
                     width: 30
                     height: 20
                     text: qsTr("Km/s")
@@ -214,7 +218,7 @@ Window {
                     anchors.topMargin: 33
                     anchors.fill: parent
                     fillMode: Image.PreserveAspectFit
-                    source: "dashboard.png"
+                    source: "images/dashboard.png"
                 }
             }
 
@@ -231,19 +235,19 @@ Window {
 
                 Text {
                     id: tdistance4
-                    x: 5
+                    x: 8
                     y: 8
                     width: 75
                     height: 19
                     text: qsTr("9")
-                    font.pixelSize: 40
+                    font.pixelSize: 30
                     verticalAlignment: Text.AlignVCenter
                     horizontalAlignment: Text.AlignLeft
                 }
 
                 Text {
                     id: element17
-                    x: 28
+                    x: 31
                     y: 8
                     width: 30
                     height: 21
@@ -258,7 +262,7 @@ Window {
                     anchors.fill: parent
                     clip: true
                     fillMode: Image.PreserveAspectFit
-                    source: "trzcacak.rs-statistics-icon-png-2224826.png"
+                    source: "images/trzcacak.rs-statistics-icon-png-2224826.png"
                 }
             }
 
@@ -275,20 +279,20 @@ Window {
 
                 Text {
                     id: tdistance5
-                    x: 0
+                    x: 4
                     y: 8
-                    width: 75
-                    height: 19
+                    width: 67
+                    height: 18
                     text: qsTr("120")
-                    font.pixelSize: 30
+                    font.pixelSize: 24
                     verticalAlignment: Text.AlignVCenter
                     horizontalAlignment: Text.AlignLeft
                 }
 
                 Text {
                     id: element18
-                    x: 48
-                    y: 8
+                    x: 42
+                    y: 11
                     text: qsTr("KCal")
                     font.pixelSize: 12
                 }
@@ -298,7 +302,7 @@ Window {
                     anchors.topMargin: 27
                     anchors.fill: parent
                     fillMode: Image.PreserveAspectFit
-                    source: "calorie.png"
+                    source: "images/calorie.png"
                 }
             }
 
@@ -309,51 +313,27 @@ Window {
                 y: 78
                 width: 400
                 height: 175
+                color:'#fff'
 
                 Plugin {
-                    id: mapPlugin
-                    name: "mapboxgl" // "mapboxgl", "esri", ...
-                    // specify plugin parameters if necessary
-                    // PluginParameter {
-                    //     name:
-                    //     value:
-                    // }
-                }
+                        id: mapPlugin
+                        name: "osm"
+                    }
+                Map {
+                        id: mapview
+                        anchors.fill: parent
+                        plugin: mapPlugin
+                        center: QtPositioning.coordinate(59.91, 10.75)
+                        zoomLevel: 14
 
-                Map{
-                    id: map
-                    opacity: 1
-                    visible: true
-                    anchors.fill:parent
-                    center: QtPositioning.coordinate(59.91, 10.75) // Oslo
-                    zoomLevel: 14
-                }
+                        MapItemView{
+                            model: markerModel
+                            delegate: mapcomponent
+                        }
+                    }
+
             }
 
-
-            Button {
-                id: button3
-                x: 394
-                y: 215
-                width: 85
-                height: 51
-                text: qsTr("[   ]")
-                font.pointSize: 23
-                font.wordSpacing: 0
-                onClicked:{
-                    swipeView.currentIndex=2;
-                }
-
-                Image {
-                    id: image2
-                    x: -2
-                    y: 0
-                    width: 87
-                    height: 43
-                    fillMode: Image.PreserveAspectFit
-                    source: "images/konum-icon-png.png"
-                }
-            }
 
         }
 
@@ -362,6 +342,9 @@ Window {
             id: page2
             enabled: false
             hoverEnabled: false
+            background: Rectangle{
+                       color:"#aed581"
+            }
             Dashboard {
                 anchors.topMargin: 50
                 anchors.bottom: parent.bottom
@@ -388,7 +371,9 @@ Window {
 
         Page {
             id: page3
-
+            background: Rectangle{
+                       color:"#dce775"
+            }
             Text {
                 id: element2
                 x: 154
@@ -403,7 +388,26 @@ Window {
                 font.bold: true
             }
 
+            Rectangle {//mapin karesi
+                id: rectangle10
+                x: 38
+                y: 26
+                width: 400
+                height: 227
+                color:'#fff'
+            Map {
+                    id: mapview1
+                    anchors.fill: parent
+                    plugin: mapPlugin
+                    center: QtPositioning.coordinate(59.91, 10.75)
+                    zoomLevel: 14
 
+                    MapItemView{
+                        model: markerModel
+                        delegate: mapcomponent
+                    }
+                }
+            }
 
         }
         Page {
@@ -1011,7 +1015,7 @@ Window {
         y: 46
         width: 480
         height: 274
-        color: "#4f904444"
+        color: "#00ffffff"
     }
 
 
@@ -1167,8 +1171,10 @@ Window {
 
 /*##^##
 Designer {
-    D{i:6;anchors_height:272;anchors_width:265;anchors_x:-172;anchors_y:-30}D{i:9;anchors_height:68;anchors_width:100;anchors_x:5;anchors_y:22}
-D{i:18;anchors_height:321;anchors_width:191;anchors_x:-31;anchors_y:-37}D{i:22;anchors_height:55;anchors_width:74;anchors_x:7;anchors_y:91}
-D{i:26;anchors_height:354;anchors_width:249;anchors_x:-208;anchors_y:-12}
+    D{i:6;anchors_height:272;anchors_width:265;anchors_x:"-172";anchors_y:"-30"}D{i:7;anchors_height:272;anchors_width:265;anchors_x:"-172";anchors_y:"-30"}
+D{i:9;anchors_height:68;anchors_width:100;anchors_x:5;anchors_y:22}D{i:10;anchors_height:68;anchors_width:100;anchors_x:5;anchors_y:22}
+D{i:18;anchors_height:321;anchors_width:191;anchors_x:"-31";anchors_y:"-37"}D{i:19;anchors_height:321;anchors_width:191;anchors_x:"-31";anchors_y:"-37"}
+D{i:22;anchors_height:55;anchors_width:74;anchors_x:7;anchors_y:91}D{i:23;anchors_height:55;anchors_width:74;anchors_x:7;anchors_y:91}
+D{i:26;anchors_height:354;anchors_width:249;anchors_x:"-208";anchors_y:"-12"}D{i:27;anchors_height:354;anchors_width:249;anchors_x:"-208";anchors_y:"-12"}
 }
 ##^##*/
