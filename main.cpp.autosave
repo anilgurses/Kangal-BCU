@@ -1,9 +1,10 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QtDebug>
-#include <QSqlQuery>
-#include <QSqlQueryModel>
-#include <QtSql>
+
+
+
+
 
 int main(int argc, char *argv[])
 {
