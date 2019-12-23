@@ -13,8 +13,7 @@ void db::initDb(){
     mydb.setDatabaseName(pwd);
 
     if(mydb.open()) {
-        QString sql = "SELECT *FROM TELEFON";
-
+       //Açıldıysa
     }
 
 }
@@ -23,5 +22,11 @@ void db::initDb(){
 // Usernameleri sql database den çekme
 
 void db::getUsernames(QString *usernames[]){
+    QSqlQuery query(mydb);
+    QSqlQueryModel *model = new QSqlQueryModel();
+    QString sql = "SELECT *FROM USERNAMES";
+
+    query.exec(sql);
+
 
 }
