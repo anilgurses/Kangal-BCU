@@ -4,7 +4,7 @@ import QtQuick.Templates 2.13
 import QtQuick.Controls 2.13
 import QtLocation 5.12
 import QtPositioning 5.12
-
+import QtQuick.LocalStorage 2.12
 
 
 Window {
@@ -425,13 +425,36 @@ Window {
                 //displayText: "Profil Seçin"
                 currentIndex: -2
 
-                model: ["Mustafa","Ali"]
+                model: ListModel {
+                        id: listModel
+                    }
 
+                function findUsers() {
+
+                            var db = LocalStorage.openDatabaseSync(":/db/db.sqlite", "1.0", "SQlite Users Database!", 100);
+                            console.log(db.open())
+                            db.transaction(
+                                function(tx) {
+
+                                    // Show all added users
+                                    var rs = tx.executeSql('SELECT Username FROM Users');
+
+                                    for (var i = 0; i < rs.rows.length; i++) {
+                                        listModel.append({
+                                                                         id: rs.rows.item(i).rowid,
+                                                                         checked: " ",
+                                                                         text:rs.rows.item(i).description
+                                                                     })
+                                    }
+                                    model = r
+                                }
+                            )
+                        }
 
 
                 //tiklandigi zaman secilen profilin bilgilerini gereken yerlere koyacak ve duzenle switchini enable yapacak
 
-
+                Component.onCompleted: findUsers()
                 onCurrentTextChanged:
                 {
                     element6.text = model[currentIndex]
