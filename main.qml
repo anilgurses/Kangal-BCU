@@ -31,6 +31,10 @@ Window {
                         tx.executeSql('INSERT INTO Users VALUES(?, ?, ?, ?, ?, ?)', [ 'Şeyda',58 ,10 ,1000 ,34,42 ]);
                         tx.executeSql('INSERT INTO Users VALUES(?, ?, ?, ?, ?, ?)', [ 'İsmail',68 ,10 ,1000 ,34,42 ]);
 
+
+
+
+
                     }
                 )
             }
@@ -79,9 +83,9 @@ Window {
                 ProgressBar {
                     id: progressBar
                     anchors.right: parent.right
-                    anchors.rightMargin: 6
+                    anchors.rightMargin: 11
                     anchors.left: parent.left
-                    anchors.leftMargin: 4
+                    anchors.leftMargin: 9
                     anchors.bottom: parent.bottom
                     anchors.bottomMargin: 42
                     anchors.top: parent.top
@@ -117,19 +121,19 @@ Window {
                     id: tdistance1
                     x: 8
                     y: 8
-                    width: 49
-                    height: 27
+                    width: 31
+                    height: 16
                     text: qsTr("100 ")
-                    font.pixelSize: 26
+                    font.pixelSize: 15
                     verticalAlignment: Text.AlignVCenter
                     horizontalAlignment: Text.AlignLeft
                 }
 
                 Image {
                     id: image8
-                    anchors.rightMargin: 2
+                    anchors.rightMargin: 12
                     anchors.bottomMargin: 2
-                    anchors.leftMargin: 22
+                    anchors.leftMargin: 12
                     anchors.topMargin: 30
                     anchors.fill: parent
                     fillMode: Image.PreserveAspectFit
@@ -152,9 +156,9 @@ Window {
 
                 Image {
                     id: image5
-                    x: 12
-                    y: 27
-                    width: 81
+                    x: 6
+                    y: 30
+                    width: 63
                     height: 36
                     clip: true
                     fillMode: Image.PreserveAspectFit
@@ -162,33 +166,33 @@ Window {
                 }
                 Text {
                     id: element19
-                    x: 37
-                    y: 8
+                    x: 45
+                    y: 11
                     width: 30
-                    height: 21
+                    height: 13
                     text: qsTr("Km")
                     horizontalAlignment: Text.AlignHCenter
-                    font.pixelSize: 12
+                    font.pixelSize: 11
                 }
 
                 Text {
                     id: tdistance2
-                    x: 5
+                    x: 8
                     y: 8
-                    width: 75
+                    width: 42
                     height: 19
                     text: qsTr("10")
-                    font.pixelSize: 30
+                    font.pixelSize: 15
                     verticalAlignment: Text.AlignVCenter
                     horizontalAlignment: Text.AlignLeft
                 }
 
                 Text {
                     id: element20
-                    x: -35
-                    y: 17
+                    x: -37
+                    y: 11
                     width: 30
-                    height: 21
+                    height: 16
                     text: qsTr("Km")
                     horizontalAlignment: Text.AlignHCenter
                     font.pixelSize: 12
@@ -213,9 +217,11 @@ Window {
                     width: 75
                     height: 19
                     text: qsTr("12")
-                    font.pixelSize: 30
+                    font.pixelSize: 20
                     verticalAlignment: Text.AlignVCenter
                     horizontalAlignment: Text.AlignLeft
+
+
                 }
 
                 Text {
@@ -278,7 +284,9 @@ Window {
 
                 Image {
                     id: image6
-                    anchors.leftMargin: 28
+                    anchors.rightMargin: 10
+                    anchors.bottomMargin: 8
+                    anchors.leftMargin: 26
                     anchors.topMargin: 27
                     anchors.fill: parent
                     clip: true
@@ -304,10 +312,36 @@ Window {
                     y: 8
                     width: 67
                     height: 18
-                    text: qsTr("120")
-                    font.pixelSize: 24
+                    text: qsTr("")
+                    font.pixelSize: 15
                     verticalAlignment: Text.AlignVCenter
                     horizontalAlignment: Text.AlignLeft
+                    Component.onCompleted:
+                        findet()
+                    function findet() {
+
+                                var db = LocalStorage.openDatabaseSync("usersdb", "1.0", "SQlite Users Database!", 100);
+                                var items = []
+                                db.transaction(
+                                    function(tx) {
+
+                                        // Show all added users
+                                        var rs = tx.executeSql('SELECT * FROM Users');
+
+                                        for (var i = 0; i < rs.rows.length; i++) {
+
+                                            if(elemen6.text == rs.rows.item(i).Username){
+                                                tdistance5.text = parseInt(rs.rows.item(i).Kalori)
+                                                tdistance2.text = parseInt(rs.rows.item(i).Mesafe)
+
+                                            }
+                                        }
+
+                                    }
+                                )
+
+                            }
+
                 }
 
                 Text {
@@ -320,6 +354,9 @@ Window {
 
                 Image {
                     id: image7
+                    anchors.rightMargin: 4
+                    anchors.bottomMargin: 8
+                    anchors.leftMargin: 4
                     anchors.topMargin: 27
                     anchors.fill: parent
                     fillMode: Image.PreserveAspectFit
@@ -441,7 +478,7 @@ Window {
                 y: 8
                 width: 134
                 height: 28
-                font.pointSize: 15
+                font.pointSize: 11
                 flat: false
                 //displayText: "Profil Seçin"
                 currentIndex: 0
@@ -458,8 +495,8 @@ Window {
                                 function(tx) {
 
                                     // Show all added users
-                                    var rs = tx.executeSql('SELECT Username FROM Users');
-                                    console.log(rs.rows)
+                                    var rs = tx.executeSql('SELECT * FROM Users');
+
                                     for (var i = 0; i < rs.rows.length; i++) {
                                         items.push(rs.rows.item(i).Username)
 
@@ -467,7 +504,7 @@ Window {
 
                                 }
                             )
-                            model= [...new Set(items)];
+                            model = [...new Set(items)];
 
                         }
 
@@ -500,13 +537,27 @@ Window {
                                     for (var i = 0; i < rs.rows.length; i++) {
 
                                         if(model[currentIndex] === rs.rows.item(i).Username){
+                                            tdistance5.text = parseInt(rs.rows.item(i).Kalori)
+                                            tdistance2.text = parseInt(rs.rows.item(i).Mesafe)
                                             profilKiloOnlar.text =  parseInt(rs.rows.item(i).Kilo / 10)
                                             profilKiloBirler.text = rs.rows.item(i).Kilo % 10
-                                            profilKilometreBirler.text = rs.rows.item(i).Mesafe % 10
-                                            profilKilometreOnlar.text = parseInt(rs.rows.item(i).Mesafe / 10)
-                                            profilKilometreYuzler.text = parseInt(rs.rows.item(i).Mesafe / 100)
-                                            profilKilometreBinler.text = parseInt(rs.rows.item(i).Mesafe / 1000)
-                                            profilKilometreOnbinler.text = parseInt(rs.rows.item(i).Mesafe / 10000)
+                                            profilKilometreBirler.text = parseInt(rs.rows.item(i).Mesafe) % 10
+                                            var kilomet = parseInt(rs.rows.item(i).Mesafe)
+                                            profilKilometreOnlar.text = parseInt(rs.rows.item(i).Mesafe / 10) % 10
+                                            if (kilomet >= 10000){
+                                                profilKilometreOnbinler.text = parseInt(kilomet / 10000)
+                                                profilKilometreBinler.text = parseInt(kilomet / 1000) % 10
+                                                profilKilometreYuzler.text = parseInt(kilomet / 100) % 10
+                                            }else if(kilomet >= 1000) {
+                                                profilKilometreBinler.text = parseInt(kilomet / 1000) % 10
+                                                profilKilometreYuzler.text = parseInt(kilomet / 100) % 10
+                                            }else if(kilomet >= 100) {
+                                                profilKilometreYuzler.text = parseInt(kilomet / 100) % 10
+                                            }
+
+
+
+
                                         }
                                     }
 
@@ -1020,11 +1071,11 @@ Window {
                             db.transaction(
                                 function(tx) {
                                     var kilo = (parseInt(profilKiloOnlar.text)*10) + parseInt(profilKiloBirler.text) + (parseInt(profilKiloYuzler.text)*100)
-                                    var kilometre = (parseInt(profilKilometreBinler.text) *1000)+ (parseInt(profilKilometreOnbinler.text) *10000) + (parseInt(profilKilometreYuzler.text)*100) + (parseInt(profilKilometreOnlar.text)*10) + parseInt(profilKilometreBirler.text)
-                                    var calori = parseInt(kilometre * 0.09036)
+                                    var kilometre = (parseInt(profilKilometreBinler.text) *1000) + (parseInt(profilKilometreOnbinler.text) *10000) + (parseInt(profilKilometreYuzler.text)*100) + (parseInt(profilKilometreOnlar.text)*10) + parseInt(profilKilometreBirler.text)
+                                    var calori = parseInt(kilometre * 0.03)
                                     tx.executeSql('UPDATE Users SET Kilo=? WHERE Username=?;', [kilo ,element6.text]);
                                     tx.executeSql('UPDATE Users SET Mesafe=? WHERE Username=?', [kilometre ,element6.text]);
-                                    tx.executeSql('UPDATE Users SET Kalori=? WHERE Username=?', [parseInt(calori),element6.text]);
+                                    tx.executeSql('UPDATE Users SET Kalori=? WHERE Username=?', [calori,element6.text]);
                                 }
                             )
 
