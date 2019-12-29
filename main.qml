@@ -13,6 +13,27 @@ Window {
     color: "#df93969b"
     flags: Qt.Window | Qt.FramelessWindowHint | Qt.WindowFullscreen
     visible: true
+    Component.onCompleted: createDb()
+
+    function createDb() {
+
+                var db = LocalStorage.openDatabaseSync("usersdb", "1.0", "SQlite Users Database!", 100);
+
+                db.transaction(
+                    function(tx) {
+                        tx.executeSql('CREATE TABLE IF NOT EXISTS Users(Username TEXT, Kilo INTEGER,Mesafe INTEGER,Kalori	INTEGER,Lat	INTEGER,Lon	INTEGER)');
+
+                                      // Add (another) greeting row
+                        tx.executeSql('INSERT INTO Users VALUES(?, ?, ?, ?, ?, ?)', [ 'Kaya',58 ,10 ,1000 ,34,42 ]);
+                        tx.executeSql('INSERT INTO Users VALUES(?, ?, ?, ?, ?, ?)', [ 'Anıl',85 ,10 ,1000 ,34,42 ]);
+                        tx.executeSql('INSERT INTO Users VALUES(?, ?, ?, ?, ?, ?)', [ 'Sevda',58 ,10 ,1000 ,34,42 ]);
+                        tx.executeSql('INSERT INTO Users VALUES(?, ?, ?, ?, ?, ?)', [ 'Mustafa',78 ,10 ,1000 ,34,42 ]);
+                        tx.executeSql('INSERT INTO Users VALUES(?, ?, ?, ?, ?, ?)', [ 'Şeyda',58 ,10 ,1000 ,34,42 ]);
+                        tx.executeSql('INSERT INTO Users VALUES(?, ?, ?, ?, ?, ?)', [ 'İsmail',68 ,10 ,1000 ,34,42 ]);
+
+                    }
+                )
+            }
 
     Image {
         id: image
@@ -423,51 +444,76 @@ Window {
                 font.pointSize: 15
                 flat: false
                 //displayText: "Profil Seçin"
-                currentIndex: -2
+                currentIndex: 0
 
                 model: ListModel {
                         id: listModel
-                    }
+                }
 
                 function findUsers() {
 
-                            var db = LocalStorage.openDatabaseSync(":/db/db.sqlite", "1.0", "SQlite Users Database!", 100);
-                            console.log(db.open())
+                            var db = LocalStorage.openDatabaseSync("usersdb", "1.0", "SQlite Users Database!", 100);
+                            var items = []
                             db.transaction(
                                 function(tx) {
 
                                     // Show all added users
                                     var rs = tx.executeSql('SELECT Username FROM Users');
-
+                                    console.log(rs.rows)
                                     for (var i = 0; i < rs.rows.length; i++) {
-                                        listModel.append({
-                                                                         id: rs.rows.item(i).rowid,
-                                                                         checked: " ",
-                                                                         text:rs.rows.item(i).description
-                                                                     })
+                                        items.push(rs.rows.item(i).Username)
+
                                     }
-                                    model = r
+
                                 }
                             )
+                            model= [...new Set(items)];
+
                         }
 
 
                 //tiklandigi zaman secilen profilin bilgilerini gereken yerlere koyacak ve duzenle switchini enable yapacak
 
-                Component.onCompleted: findUsers()
+
+                Component.onCompleted: {
+                    findUsers()
+                    findUserDet()
+                }
+
                 onCurrentTextChanged:
                 {
                     element6.text = model[currentIndex]
                     profilDuzenleSwitch.enabled = true
-
-
+                    findUserDet()
                 }
 
+                function findUserDet() {
 
+                            var db = LocalStorage.openDatabaseSync("usersdb", "1.0", "SQlite Users Database!", 100);
+                            var items = []
+                            db.transaction(
+                                function(tx) {
 
+                                    // Show all added users
+                                    var rs = tx.executeSql('SELECT * FROM Users');
 
+                                    for (var i = 0; i < rs.rows.length; i++) {
 
+                                        if(model[currentIndex] === rs.rows.item(i).Username){
+                                            profilKiloOnlar.text =  parseInt(rs.rows.item(i).Kilo / 10)
+                                            profilKiloBirler.text = rs.rows.item(i).Kilo % 10
+                                            profilKilometreBirler.text = rs.rows.item(i).Mesafe % 10
+                                            profilKilometreOnlar.text = parseInt(rs.rows.item(i).Mesafe / 10)
+                                            profilKilometreYuzler.text = parseInt(rs.rows.item(i).Mesafe / 100)
+                                            profilKilometreBinler.text = parseInt(rs.rows.item(i).Mesafe / 1000)
+                                            profilKilometreOnbinler.text = parseInt(rs.rows.item(i).Mesafe / 10000)
+                                        }
+                                    }
 
+                                }
+                            )
+
+                        }
 
 
             }
@@ -590,9 +636,11 @@ Window {
                 checkable: false
                 font.pointSize: 7
 
-                onClicked:
+                onClicked:{
                     if(profilKiloYuzler.text < 9 )
                         profilKiloYuzler.text ++
+
+                }
             }
 
             Button {
@@ -605,9 +653,11 @@ Window {
                 enabled: false
                 font.pointSize: 7
 
-                onClicked:
+                onClicked:{
                     if(profilKiloOnlar.text < 9 )
                         profilKiloOnlar.text ++
+
+                }
             }
 
             Button {
@@ -619,9 +669,13 @@ Window {
                 text: qsTr("/\\")
                 enabled: false
                 font.pointSize: 7
+
                 onClicked:
+                {
                     if(profilKiloBirler.text < 9 )
                         profilKiloBirler.text ++
+
+                }
 
             }
 
@@ -635,10 +689,14 @@ Window {
                 enabled: false
                 font.pointSize: 7
 
-                onClicked:
+                onClicked:{
                     if(profilKiloYuzler.text > 0 )
                         profilKiloYuzler.text --
+
+                }
             }
+
+
 
             Button {
                 id: profilKiloOnlarEksi
@@ -650,9 +708,12 @@ Window {
                 enabled: false
                 font.pointSize: 7
 
-                onClicked:
+                onClicked:{
                     if(profilKiloOnlar.text > 0 )
                         profilKiloOnlar.text --
+
+                }
+
             }
 
             Button {
@@ -665,11 +726,13 @@ Window {
                 enabled: false
                 font.pointSize: 7
 
-                onClicked:
+
+                onClicked:{
+
                     if(profilKiloBirler.text > 0 )
                         profilKiloBirler.text --
 
-
+                   }
             }
 
             Text {
@@ -733,9 +796,12 @@ Window {
                 enabled: false
                 font.pointSize: 7
 
-                onClicked:
+                onClicked:{
+
                     if(profilKilometreBinler.text < 9 )
                         profilKilometreBinler.text ++
+
+                }
             }
 
             Button {
@@ -748,9 +814,13 @@ Window {
                 enabled: false
                 font.pointSize: 7
 
-                onClicked:
+
+                onClicked:{
                     if(profilKilometreYuzler.text < 9 )
                         profilKilometreYuzler.text ++
+
+                }
+
             }
 
             Button {
@@ -763,9 +833,12 @@ Window {
                 enabled: false
                 font.pointSize: 7
 
-                onClicked:
+
+                onClicked:{
                     if(profilKilometreOnlar.text < 9 )
                         profilKilometreOnlar.text ++
+
+                }
             }
 
             Button {
@@ -778,9 +851,11 @@ Window {
                 enabled: false
                 font.pointSize: 7
 
-                onClicked:
+                onClicked:{
                     if(profilKilometreBinler.text > 0 )
                         profilKilometreBinler.text --
+
+                }
             }
 
             Button {
@@ -793,9 +868,11 @@ Window {
                 enabled: false
                 font.pointSize: 7
 
-                onClicked:
+                onClicked:{
                     if(profilKilometreYuzler.text > 0 )
                         profilKilometreYuzler.text --
+
+                }
             }
 
             Button {
@@ -808,9 +885,11 @@ Window {
                 enabled: false
                 font.pointSize: 7
 
-                onClicked:
+                onClicked:{
                     if(profilKilometreOnlar.text > 0 )
                         profilKilometreOnlar.text --
+
+                }
             }
 
             Text {
@@ -834,9 +913,11 @@ Window {
                 enabled: false
                 font.pointSize: 7
 
-                onClicked:
+                onClicked:{
                     if(profilKilometreOnbinler.text < 9 )
                         profilKilometreOnbinler.text ++
+
+                }
             }
 
             Button {
@@ -849,9 +930,11 @@ Window {
                 enabled: false
                 font.pointSize: 7
 
-                onClicked:
+                onClicked:{
                     if(profilKilometreOnbinler.text > 0 )
                         profilKilometreOnbinler.text --
+
+                }
             }
 
             Text {
@@ -875,9 +958,12 @@ Window {
                 enabled: false
                 font.pointSize: 7
 
-                onClicked:
+                onClicked:{
+
                     if(profilKilometreBirler.text < 9 )
                         profilKilometreBirler.text ++
+
+                }
             }
 
             Button {
@@ -890,9 +976,11 @@ Window {
                 enabled: false
                 font.pointSize: 7
 
-                onClicked:
+                onClicked :{
                     if(profilKilometreBirler.text > 0 )
                         profilKilometreBirler.text --
+                    changeUserInfo()
+                }
             }
 
             TextInput {
@@ -925,7 +1013,22 @@ Window {
                 text: qsTr("Düzenle")
                 enabled: false
 
+                function changeUserInfo() {
 
+                            var db = LocalStorage.openDatabaseSync("usersdb", "1.0", "SQlite Users Database!", 100);
+                            var items = []
+                            db.transaction(
+                                function(tx) {
+                                    var kilo = (parseInt(profilKiloOnlar.text)*10) + parseInt(profilKiloBirler.text) + (parseInt(profilKiloYuzler.text)*100)
+                                    var kilometre = (parseInt(profilKilometreBinler.text) *1000)+ (parseInt(profilKilometreOnbinler.text) *10000) + (parseInt(profilKilometreYuzler.text)*100) + (parseInt(profilKilometreOnlar.text)*10) + parseInt(profilKilometreBirler.text)
+                                    var calori = parseInt(kilometre * 0.09036)
+                                    tx.executeSql('UPDATE Users SET Kilo=? WHERE Username=?;', [kilo ,element6.text]);
+                                    tx.executeSql('UPDATE Users SET Mesafe=? WHERE Username=?', [kilometre ,element6.text]);
+                                    tx.executeSql('UPDATE Users SET Kalori=? WHERE Username=?', [parseInt(calori),element6.text]);
+                                }
+                            )
+
+                        }
 
                 onClicked: if( profilDuzenleSwitch.checked ){ //eger checked ise tuslar aktif olacak
 
@@ -955,7 +1058,7 @@ Window {
 
                            }
                            else if(profilDuzenleSwitch.checked == false){
-
+                               changeUserInfo()
                                profilKiloBirlerArti.enabled = false
                                profilKiloOnlarArti.enabled = false
                                profilKiloYuzlerArti.enabled = false
