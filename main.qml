@@ -7,6 +7,9 @@ import QtPositioning 5.12
 import QtQuick.LocalStorage 2.12
 
 
+
+
+
 Window {
     id:main
     width: 480; height: 320
@@ -31,13 +34,11 @@ Window {
                         tx.executeSql('INSERT INTO Users VALUES(?, ?, ?, ?, ?, ?)', [ 'Şeyda',58 ,10 ,1000 ,34,42 ]);
                         tx.executeSql('INSERT INTO Users VALUES(?, ?, ?, ?, ?, ?)', [ 'İsmail',68 ,10 ,1000 ,34,42 ]);
 
-
-
-
-
                     }
                 )
             }
+
+
 
     Image {
         id: image
@@ -162,26 +163,28 @@ Window {
                     height: 36
                     clip: true
                     fillMode: Image.PreserveAspectFit
-                    source: "images/pngtube.com-roadmap-png-4341369.png"
+                    source: "images/temp.png"
                 }
                 Text {
                     id: element19
-                    x: 45
-                    y: 11
+                    x: 37
+                    y: 14
                     width: 30
                     height: 13
-                    text: qsTr("Km")
+                    text: qsTr("C")
                     horizontalAlignment: Text.AlignHCenter
                     font.pixelSize: 11
                 }
 
+                property alias temperature: temperatureItm.text
+
                 Text {
-                    id: tdistance2
+                    id: temperatureItm
                     x: 8
                     y: 8
                     width: 42
                     height: 19
-                    text: qsTr("10")
+                    text: temperature
                     font.pixelSize: 15
                     verticalAlignment: Text.AlignVCenter
                     horizontalAlignment: Text.AlignLeft
@@ -209,15 +212,15 @@ Window {
                 radius: 15
                 border.color: "#592626"
                 border.width: 5
-
+                property alias speed: tdistance3.text
                 Text {
                     id: tdistance3
                     x: 8
                     y: 8
                     width: 75
                     height: 19
-                    text: qsTr("12")
-                    font.pixelSize: 20
+                    text: speed
+                    font.pixelSize: 12
                     verticalAlignment: Text.AlignVCenter
                     horizontalAlignment: Text.AlignLeft
 
@@ -227,7 +230,7 @@ Window {
                 Text {
                     id: element16
                     x: 37
-                    y: 16
+                    y: 20
                     width: 30
                     height: 20
                     text: qsTr("Km/s")
@@ -312,7 +315,7 @@ Window {
                     y: 8
                     width: 67
                     height: 18
-                    text: qsTr("")
+                    text: qsTr("1000")
                     font.pixelSize: 15
                     verticalAlignment: Text.AlignVCenter
                     horizontalAlignment: Text.AlignLeft
@@ -332,7 +335,7 @@ Window {
 
                                             if(elemen6.text == rs.rows.item(i).Username){
                                                 tdistance5.text = parseInt(rs.rows.item(i).Kalori)
-                                                tdistance2.text = parseInt(rs.rows.item(i).Mesafe)
+
 
                                             }
                                         }
@@ -381,7 +384,7 @@ Window {
                         id: mapview
                         anchors.fill: parent
                         plugin: mapPlugin
-                        center: QtPositioning.coordinate(59.91, 10.75)
+                        center: QtPositioning.coordinate(40.996349, 29.066201)
                         zoomLevel: 14
 
                         MapItemView{
@@ -538,7 +541,7 @@ Window {
 
                                         if(model[currentIndex] === rs.rows.item(i).Username){
                                             tdistance5.text = parseInt(rs.rows.item(i).Kalori)
-                                            tdistance2.text = parseInt(rs.rows.item(i).Mesafe)
+
                                             profilKiloOnlar.text =  parseInt(rs.rows.item(i).Kilo / 10)
                                             profilKiloBirler.text = rs.rows.item(i).Kilo % 10
                                             profilKilometreBirler.text = parseInt(rs.rows.item(i).Mesafe) % 10
